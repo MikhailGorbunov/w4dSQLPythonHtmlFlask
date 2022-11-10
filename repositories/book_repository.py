@@ -36,3 +36,12 @@ def delete(id):
     sql = "DELETE  FROM books WHERE id=%s"
     values = [id]
     run_sql(sql, values)
+
+def save(task):
+    sql = "INSERT INTO tasks (name, title, user_id) VALUES (%s, %s, %s) RETURNING *"
+    values = [book.name, book.title, author.id]
+    results = run_sql(sql, values)
+    id = results[0]['id']
+    book.id = id
+    return book
+    
